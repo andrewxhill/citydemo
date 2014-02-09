@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Map console demo</title>
+  <meta charset="utf-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      height: 100%;
+      text-align: center;
+      margin: 0; padding: 0;
+    }
+    #map {
+      position: fixed;
+      width: 100%; height: 100%;
+
+    }
+    #menu {
+      position: fixed;
+      margin-top: 8px;
+      margin-left:8px;
+      z-index: 100;
+      width: 60px; height: auto;
+      color: white;
+    }
+    #menu ul {
+      list-style: none;
+    }
+    #menu ul li {
+      width: 32px;
+      height: 32px;
+      margin-top: 4px;
+      font-size: 28px;
+      line-height: 32px;
+      text-align: center;
+      vertical-align: middle;
+      cursor: pointer;
+    }
+    #menu ul li.icon { background-image: url('images/design-invert.png'); margin: 26px 0px 22px 0px; }
+    #menu ul li.link { background-color: #5fbd9d; border-radius: 2px;}
+    #menu ul li.link:hover{
+      background-color: #4fa186;
+    }
+
+    h1 {
+      font-size: 0.9em;
+      width: 100%;
+      margin-bottom: 8px;
+    }
+    #search {
+      font-family:Arial;
+      position: fixed;
+      margin-top: 28px;
+      margin-left: 54px;
+      padding: 10px 15px;
+      z-index: 100;
+      width: 240px; height: 25px;
+      color: white;
+      text-align: left;
+      border-radius: 8px;
+      background-image: url('images/dirty_old_shirt.png');
+    }
+    #search input {
+      width: 160px;
+      margin-left: 4px;
+    }
+    #data {
+       font-family:Arial;
+      position: fixed;
+      margin-top: 88px;
+      margin-left: 54px;
+      padding: 5px 15px;
+      z-index: 100;
+      width: 240px; height: 130px;
+      color: white;
+      text-align: left;
+      border-radius: 8px;
+      background-image: url('images/dirty_old_shirt.png');
+    }
+    #data .agency {
+      font-weight: 200;
+      font-size: 12px;
+      width: 100%;
+      color: #5199db;
+      margin-bottom: 2px;
+    }
+    .keyval {
+      position: relative;
+      font-size: 0.9em;
+      color: #ccc;
+      font-variant: small-caps;
+      margin-top: 4px;
+    }
+    .keyval a {
+      color: #5199db;
+    }
+    .keyval .key {
+      /*display: block;*/
+      height: 15px;
+      width: 90px;
+      min-width: 100px;
+      padding-left: 10px;
+      float: left;
+    }
+
+    #graph {
+      position: absolute;
+      bottom: 40px;
+      right: 0px;
+      width: 100%;
+      height: 140px;
+      z-index: 100;
+      color: white;
+      text-align: left;
+      border-radius: 8px;
+      background-image: url('images/dirty_old_shirt.png');
+    }
+    #content {
+      margin: 0 auto;
+      width: 300px;
+      padding-top: 400px;
+    }
+  .ui-autocomplete-loading {
+    background: white url('images/ui-anim_basic_16x16.gif') right center no-repeat;
+  }
+  </style>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
+  <!--[if lte IE 8]>
+      <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.ie.css" />
+  <![endif]-->
+</head>
+<body>
+  <div id="menu">
+    <ul>
+      <li class="icon"></li>
+      <li class="map link">M</li>
+      <li class="about link">E</li>
+      <li class="search link">N</li>
+      <li class="print link">U</li>
+    </ul>
+  </div>
+  <div id="search">
+    <div class="keyval">
+      <label for="dataset">Dataset: </label>
+      <input id="dataset" />
+    </div>
+    
+  </div>
+  <div id="data">
+    <div class="agency">DOE</div>
+    <h1>NYC School Performance</h1>
+    <div class="keyval">
+      <div class="key">date range:</div>
+      <div class="val">01/2013 - 01/2014</div>
+    </div>
+    <div class="keyval">
+      <div class="key">coverage:</div>
+      <div class="val">All boroughs</div>
+    </div>
+    <div class="keyval">
+      <div class="key">date range:</div>
+      <div class="val">01/2013 - 01/2014</div>
+    </div>
+    <div class="keyval">
+      <div class="key">contact:</div>
+      <div class="val"><a href="mailto:some@some.org">John Smith</a></div>
+    </div>
+  </div>
+  <div id="map"></div>
+  <div id="graph">
+    <div id="hc"></div>
+  </div>
+
+  <script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
+  <script src="highcharts.js"></script>
+  <script src="main.js"></script>
+  <script type="text/javascript">
+    window.onload = main;
+  </script>
+</body>
+</html>
